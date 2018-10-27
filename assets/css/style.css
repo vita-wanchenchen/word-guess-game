@@ -1,0 +1,30 @@
+body {
+    background-image: url("../images/disney-princess-bg.png");
+    font-family: 'Mali', cursive;   
+}
+
+#game-name {
+    background-color: rgb(240, 212, 216);
+    border: rgb(118, 200, 233) dashed 3px;
+    border-radius: 5px;
+}
+
+h3 {
+    font-weight: bold;
+}
+
+#current-word-section,
+#game-section,
+#left-block {
+    background-color: rgb(240, 212, 216);
+    border: rgb(118, 200, 233) dashed 3px;
+}
+
+#main-content {
+    margin-top: -90px;
+}
+
+span {
+    font-size: 35px;
+    color: blue;
+}

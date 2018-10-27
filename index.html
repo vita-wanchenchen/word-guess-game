@@ -1,0 +1,77 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Word Guess Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    
+</head>
+<body>
+    <div class="jumbotron jumbotron-fluid bg-transparent">
+        <div class="container text-center" id="game-name">
+            <h1 class="display-1">HANGMAN</h1>
+            <p class="lead display-4">Disney Movies Has Princess</p>
+        </div>
+    </div>
+
+    <div class="container text-center" id="main-content">
+        
+        <!--Answer display-->
+        <div class="row">
+            <div class="card w-100" id="current-word-section">
+                <div class="card-body">
+                    <h3 class="card-title">Current Word</h3>
+                    <div id="word-blanks">
+                        <h3>_ _ _ _ _ _ _ _ _ </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="row">
+            
+            <!--text content display-->
+            <div class="card w-50 col-sm" id="game-section">
+                <div class="card-body">
+                    <h4>Press any key to get started!</h4>
+                    <div>
+                        <h3 class="section-title">Wins: </h3>
+                        <!-- The div where our wins will be shown. -->
+                        <span id="win-counter">0</span>
+                    </div>
+
+                    <div>
+                        <h3 class="section-title">Losses: </h3>
+                        <!-- The div where our wins will be shown. -->
+                        <span id="loss-counter">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!--Images display-->
+            <div class="card w-50 col-sm" id="left-block">
+                <div class="card-body">
+                    <div id="guesses-remaining-section">
+                        <h3 class="section-title">Number of Guesses Remaining</h3>
+                            <!-- The div where our remaining guesses will be shown. -->
+                            <span id="guesses-left">12</span>
+                    </div>
+
+                    <div id="guessed-letters-section">
+                        <h3 class="section-title">Letters Already Guessed</h3>
+                            <!-- The div where our guesses letters will be shown. -->
+                            <span id="guessed-letters"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/javascript/game.js"></script> 
+</body>
+</html>
