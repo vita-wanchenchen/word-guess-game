@@ -2,7 +2,7 @@
 
 // Array of Word Options
 var wordsList = ["frozen", "moana", "brave", "tangled", "mulan", "pocahontas", 
-"aladdin", "cinderella", /*"sleeping beauty", "the little mermaid"*/]
+"aladdin", "cinderella", "sleeping beauty", "the little mermaid"];
 // Solution will be held here.
 var wordToGuess = "";
 // This will break the solution into individual letters to be stored in array.
@@ -44,12 +44,18 @@ function startGame() {
     wrongGuesses = [];
 
     // Fill up the blanksAndSuccesses list with appropriate number of blanks.
-    for (var i = 0; i < numBlanks; i++) {
+    /*for (var i = 0; i < numBlanks; i++) {
+        blanksAndSuccesses.push("_");
+      }*/
+    for (var i =0; i < lettersInWordToGuess.length; i++) {
+      if (lettersInWordToGuess[i] === " ") {
+        blanksAndSuccesses.push("&nbsp");
+      } else {
         blanksAndSuccesses.push("_");
       }
-    
+    }
     // Print the initial blanks in console.
-    console.log(blanksAndSuccesses);
+    console.log("array", blanksAndSuccesses);
 
     // Reprints the guessesLeft to 12
     document.getElementById("guesses-left").innerHTML = numGuesses;
@@ -66,7 +72,13 @@ function startGame() {
 function checkLetters(letter) {
     
     if (letter.search(/^[a-zA-Z]+$/) === -1) {
-        alert("Only characters");
+      document.getElementById("message").textContent = "Only characters";  
+      //alert("Only characters");
+        return;
+      }
+      if (wrongGuesses.indexOf(letter) > -1 || blanksAndSuccesses.indexOf(letter) > -1) {
+        document.getElementById("message").textContent = "You already guess that letter!"; 
+        //alert("You already guess that letter!");
         return;
       }
 
@@ -78,14 +90,15 @@ function checkLetters(letter) {
     if (wordToGuess[i] === letter) {
       // If the letter exists then toggle this boolean to true. This will be used in the next step.
       lettersInWordToGuess = true;
+      blanksAndSuccesses[i] = letter;
     }
   }
 
   // If the letter exists somewhere in the word, then figure out exactly where (which indices).
-  if (lettersInWordToGuess) {
+  if (!lettersInWordToGuess) {
 
     // Loop through the word.
-    for (var j = 0; j < numBlanks; j++) {
+    /*for (var j = 0; j < numBlanks; j++) {
 
       // Populate the blanksAndSuccesses with every instance of the letter.
       if (wordToGuess[j] === letter) {
@@ -97,7 +110,7 @@ function checkLetters(letter) {
     console.log(blanksAndSuccesses);
   }
   // If the letter doesn't exist at all...
-  else {
+  else {*/
     // ..then we add the letter to the list of wrong letters, and we subtract one of the guesses.
     wrongGuesses.push(letter);
     numGuesses--;
@@ -118,10 +131,12 @@ function roundComplete() {
     document.getElementById("guessed-letters").innerHTML = wrongGuesses.join(" ");
   
     // If we have gotten all the letters to match the solution...
-    if (lettersInWordToGuess.toString() === blanksAndSuccesses.toString()) {
+    //if (lettersInWordToGuess.toString() === blanksAndSuccesses.toString()) {
+    if (blanksAndSuccesses.indexOf("_") === -1) {
       // ..add to the win counter & give the user an alert.
       winCounter++;
-      alert("You win!");
+      document.getElementById("message").textContent = "You win!";
+      //alert("You win!");
   
       // Update the win counter in the HTML & restart the game.
       document.getElementById("win-counter").innerHTML = winCounter;
@@ -133,7 +148,8 @@ function roundComplete() {
       // Add to the loss counter.
       lossCounter++;
       // Give the user an alert.
-      alert("You lose");
+      document.getElementById("message").textContent = "You lose";
+      //alert("You lose");
   
       // Update the loss counter in the HTML.
       document.getElementById("loss-counter").innerHTML = lossCounter;
@@ -151,6 +167,7 @@ function roundComplete() {
   
   // Then initiate the function for capturing key clicks.
   document.onkeyup = function(event) {
+    document.getElementById("message").textContent = " ";
     // Converts all key clicks to lowercase letters.
     var letterGuessed = String.fromCharCode(event.which).toLowerCase();
     // Runs the code to check for correctness.
